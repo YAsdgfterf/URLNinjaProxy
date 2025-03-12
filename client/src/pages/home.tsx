@@ -29,6 +29,27 @@ export default function Home() {
       return data.proxyUrl;
     },
     onSuccess: (proxyUrl) => {
+      // Open in new about:blank tab and make it fullscreen
+      const win = window.open('about:blank');
+      if (win) {
+        win.document.write(`
+          <html>
+            <head>
+              <title>embedddddr</title>
+              <style>
+                body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; }
+                iframe { border: none; width: 100%; height: 100%; }
+              </style>
+            </head>
+            <body>
+              <iframe src="${proxyUrl}" allowfullscreen></iframe>
+              <script>
+                document.querySelector('iframe').requestFullscreen();
+              </script>
+            </body>
+          </html>
+        `);
+      }
       setProxyUrl(proxyUrl);
       form.reset();
     },
@@ -49,8 +70,10 @@ export default function Home() {
     <div className="min-h-screen w-full flex flex-col items-center justify-center bg-black p-4">
       <div className="w-full max-w-xl mx-auto space-y-8">
         <div className="text-center space-y-2">
-          <h1 className="text-4xl font-bold text-red-500 [text-shadow:_0_0_10px_rgb(239_68_68_/_70%)]">
-            URL Proxy
+          <h1 className="text-4xl font-bold">
+            embe
+            <span className="text-red-500">dddd</span>
+            dr
           </h1>
           <p className="text-gray-400">
             Enter a URL below to access it through our secure proxy
@@ -80,7 +103,7 @@ export default function Home() {
                 <Button
                   type="submit"
                   disabled={proxyMutation.isPending}
-                  className="w-full bg-red-500 hover:bg-red-600 text-white [text-shadow:_0_0_10px_rgb(239_68_68_/_70%)] shadow-[0_0_15px_rgb(239_68_68_/_30%)] hover:shadow-[0_0_20px_rgb(239_68_68_/_40%)] transition-all"
+                  className="w-full bg-red-900 hover:bg-red-800 text-white shadow-[0_0_15px_rgb(127_29_29_/_30%)] hover:shadow-[0_0_20px_rgb(127_29_29_/_40%)] transition-all"
                 >
                   {proxyMutation.isPending ? (
                     <Loader2 className="h-4 w-4 animate-spin" />
@@ -92,16 +115,6 @@ export default function Home() {
             </Form>
           </CardContent>
         </Card>
-
-        {proxyUrl && (
-          <div className="w-full aspect-video">
-            <iframe
-              src={proxyUrl}
-              className="w-full h-full border-2 border-red-500/20 rounded-lg bg-gray-900/50"
-              title="Proxied content"
-            />
-          </div>
-        )}
       </div>
     </div>
   );
