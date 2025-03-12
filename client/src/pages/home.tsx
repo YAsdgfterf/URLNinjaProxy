@@ -70,9 +70,9 @@ export default function Home() {
     <div className="min-h-screen w-full flex flex-col items-center justify-center bg-black p-4">
       <div className="w-full max-w-xl mx-auto space-y-8">
         <div className="text-center space-y-2">
-          <h1 className="text-4xl font-bold">
+          <h1 className="text-4xl font-bold animate-pulse">
             embe
-            <span className="text-red-500">dddd</span>
+            <span className="text-red-500 [text-shadow:_0_0_20px_rgb(220_38_38_/_100%)]">dddd</span>
             dr
           </h1>
           <p className="text-gray-400">
@@ -80,7 +80,7 @@ export default function Home() {
           </p>
         </div>
 
-        <Card className="border-red-500/20 bg-gray-900/50 backdrop-blur">
+        <Card className="border-red-500/20 bg-gray-900/50 backdrop-blur shadow-[0_0_25px_rgb(220_38_38_/_20%)] hover:shadow-[0_0_35px_rgb(220_38_38_/_30%)] transition-all duration-500">
           <CardContent className="pt-6">
             <Form {...form}>
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
@@ -92,7 +92,7 @@ export default function Home() {
                       <FormControl>
                         <Input
                           placeholder="https://example.com"
-                          className="bg-gray-800 border-red-500/20 text-white placeholder:text-gray-500 focus-visible:ring-red-500"
+                          className="bg-gray-800 border-red-500/20 text-white placeholder:text-gray-500 focus-visible:ring-red-500 focus-visible:ring-opacity-50 focus-visible:border-red-500 focus-visible:shadow-[0_0_15px_rgb(220_38_38_/_30%)]"
                           {...field}
                         />
                       </FormControl>
@@ -103,7 +103,7 @@ export default function Home() {
                 <Button
                   type="submit"
                   disabled={proxyMutation.isPending}
-                  className="w-full bg-red-900 hover:bg-red-800 text-white shadow-[0_0_15px_rgb(127_29_29_/_30%)] hover:shadow-[0_0_20px_rgb(127_29_29_/_40%)] transition-all"
+                  className="w-full bg-red-900 hover:bg-red-800 text-white shadow-[0_0_25px_rgb(127_29_29_/_40%)] hover:shadow-[0_0_35px_rgb(220_38_38_/_60%)] transition-all duration-300"
                 >
                   {proxyMutation.isPending ? (
                     <Loader2 className="h-4 w-4 animate-spin" />
